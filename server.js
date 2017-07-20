@@ -5,6 +5,8 @@ const fs = require('fs');
 const port = process.env.PORT || 3000;
 var app = express();
 
+app.use(express.static('index'))
+
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
@@ -36,23 +38,32 @@ hbs.registerHelper('screamIt', (text) => {
 
 app.get('/', (req, res) => {
 	//res.send('<h1>Hello Express!</h1>');
-	res.render('home.hbs', {
-		greeting: 'Welcome!',
-		pageTitle: 'Home Page',
-		name: 'Tina',
-		likes: [
-			'Cooking',
-			'Baking',
-			'Traveling',
-			'Watching shows'
-		]
-	});
+	res.render('home.hbs');
 });
 
 app.get('/about', (req, res) => {
 	res.render('about.hbs', {
 		pageTitle: 'About Page'
 	});
+});
+
+app.get('/twocolumn1', (req, res) => {
+	res.render('twocolumn1.hbs');
+});
+
+//twocolumn2.html
+app.get('/twocolumn2', (req, res) => {
+	res.render('twocolumn2.hbs');
+});
+
+//onecolumn.html
+app.get('/onecolumn', (req, res) => {
+	res.render('onecolumn.hbs');
+});
+
+//threecolumn.html
+app.get('/threecolumn', (req, res) => {
+	res.render('threecolumn.hbs');
 });
 
 app.get('/project', (req, res) => {
